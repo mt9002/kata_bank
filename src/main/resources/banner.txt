@@ -1,0 +1,7 @@
+${Ansi.YELLOW}
+-----------------------------------------------------------------
+⚡⚡⚡ Running CaloriesControl! .... Happy Day! ⚡⚡⚡  
+       Java: ${java.version} 
+       Spring Boot: ${spring-boot.version}
+-----------------------------------------------------------------
+${Ansi.DEFAULT}
