@@ -22,10 +22,8 @@ public class AccountModel {
     @Column(unique = true)
     private String numAccount;
     private double amount;
+    private String userIdentity;
 
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<ExtractModel> extracts = new ArrayList<>();
 
     @Column(name = "register_date", nullable = false, updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")

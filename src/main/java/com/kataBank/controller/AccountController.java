@@ -18,9 +18,9 @@ public class AccountController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createAccount(@RequestBody AccountRequest accountRequest){
-        accountService.createAccount(accountRequest);
-        return ResponseEntity.status(HttpStatus.OK).body("account successfully created");
+    public ResponseEntity<Account> createAccount(@RequestBody AccountRequest accountRequest){
+
+        return ResponseEntity.status(HttpStatus.OK).body(accountService.createAccount(accountRequest));
     }
 
     @GetMapping("/findByAccount")

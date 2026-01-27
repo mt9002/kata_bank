@@ -2,8 +2,8 @@ package com.kataBank.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class InvalidDepositException extends ApiException{
-    public InvalidDepositException(String message){
+public class InvalidTransactionAmountException extends ApiException{
+    public InvalidTransactionAmountException(String message){
         super(message, HttpStatus.BAD_REQUEST);
     }
 }

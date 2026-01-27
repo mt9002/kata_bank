@@ -1,7 +1,10 @@
 package com.kataBank.service;
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
+@Data
 public class Extract {
 
     private double amount;
@@ -15,42 +18,9 @@ public class Extract {
         this.balance = balance;
         this.account = account;
     }
-
     public Extract(double amount, double balance, LocalDateTime registerDate) {
         this.amount = amount;
         this.balance = balance;
-        this.registerDate = registerDate;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public LocalDateTime getRegisterDate() {
-        return registerDate;
-    }
-
-    public void setRegisterDate(LocalDateTime registerDate) {
         this.registerDate = registerDate;
     }
 }

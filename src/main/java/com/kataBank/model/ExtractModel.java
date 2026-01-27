@@ -1,6 +1,5 @@
 package com.kataBank.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -20,9 +19,8 @@ public class ExtractModel {
     private double amount;
     private double balance;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
-    @JsonBackReference
     private AccountModel account;
 
     @Column(name = "register_date", nullable = false, updatable = false)

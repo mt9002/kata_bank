@@ -1,7 +1,7 @@
 package com.kataBank.controller;
 
 import com.kataBank.dto.TransactionRequest;
-import com.kataBank.service.ITransactionService;
+import com.kataBank.service.TransactionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/transaction")
 public class TransactionController {
 
-    private final ITransactionService transactionService;
+    private final TransactionService transactionService;
 
-    public TransactionController(ITransactionService transactionService) {
+    public TransactionController(TransactionService transactionService) {
         this.transactionService = transactionService;
     }
 
