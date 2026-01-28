@@ -18,10 +18,8 @@ public class AccountMapper {
         return modelMapper.map(account, AccountModel.class);
     }
 
-
-
     public Account toAccount(AccountModel accountModel) {
-        return new Account.Builder()
+        return Account.builder()
                 .id(accountModel.getId())
                 .amount(accountModel.getAmount())
                 .numAccount(accountModel.getNumAccount())
@@ -30,13 +28,11 @@ public class AccountMapper {
                 .build();
     }
 
-    public Account toAccountExisting(AccountModel accountModel)
-    {
+    public Account toAccountExisting(AccountModel accountModel) {
         if (accountModel == null) {
             return null;
         }
-
-        return new Account.Builder()
+        return Account.builder()
                 .id(accountModel.getId())
                 .amount(accountModel.getAmount())
                 .numAccount(accountModel.getNumAccount())

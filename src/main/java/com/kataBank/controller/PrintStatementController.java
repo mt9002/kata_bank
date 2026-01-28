@@ -18,12 +18,14 @@ public class PrintStatementController {
     }
 
     @GetMapping("/findStatement")
-    public ResponseEntity<byte[]> findStatement(@RequestParam(value = "numAccount") String numAccount){
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_PDF);
-        headers.setContentDisposition(ContentDisposition.builder("inline")
-                .filename("statement_" + numAccount + ".pdf").build());
-        return ResponseEntity.status(HttpStatus.OK).headers(headers)
-                .body(printStatementService.printStatementExtract(numAccount));
+    public ResponseEntity<byte[]> findStatement(@RequestParam(value = "numAccount") String numAccount) {
+
+        byte[] pdf = printStatementService.printStatementExtract(numAccount);
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "inline; filename=statement_" + numAccount + ".pdf")
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(pdf);
     }
 }

@@ -1,8 +1,10 @@
 package com.kataBank.controller;
 
+import com.kataBank.dto.AccountModelAssembler;
 import com.kataBank.dto.AccountRequest;
 import com.kataBank.service.Account;
 import com.kataBank.service.AccountService;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,20 +14,23 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
 
     private final AccountService accountService;
+    private final AccountModelAssembler assembler;
 
-    public AccountController(AccountService accountService) {
+    public AccountController(AccountService accountService, AccountModelAssembler assembler) {
         this.accountService = accountService;
+        this.assembler = assembler;
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Account> createAccount(@RequestBody AccountRequest accountRequest){
-
-        return ResponseEntity.status(HttpStatus.OK).body(accountService.createAccount(accountRequest));
+    public ResponseEntity<EntityModel<Account>> createAccount(@RequestBody AccountRequest accountReq){
+        Account account = accountService.createAccount(accountReq);
+        return ResponseEntity.status(HttpStatus.OK).body(assembler.toModel(account));
     }
 
     @GetMapping("/findByAccount")
-    public ResponseEntity<Account> findByAccount(
+    public ResponseEntity<EntityModel<Account>> findByAccount(
             @RequestParam(value = "numAccount") String numAccount){
-        return ResponseEntity.status(HttpStatus.OK).body(accountService.findByAccount(numAccount));
+        Account account = accountService.findByAccount(numAccount);
+        return ResponseEntity.status(HttpStatus.OK).body(assembler.toModel(account));
     }
 }

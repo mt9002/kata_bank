@@ -20,14 +20,14 @@ public class TransactionController {
     }
 
     @PostMapping("/deposit")
-    public ResponseEntity<String> deposit(@RequestBody TransactionRequest transactionRequest){
+    public ResponseEntity<Void> deposit(@RequestBody TransactionRequest transactionRequest){
         transactionService.deposit(transactionRequest);
-        return ResponseEntity.status(HttpStatus.OK).body("successful deposit");
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/withDraw")
-    public ResponseEntity<String> withDraw(@RequestBody TransactionRequest transactionRequest){
+    public ResponseEntity<Void> withDraw(@RequestBody TransactionRequest transactionRequest){
         transactionService.withDraw(transactionRequest);
-        return ResponseEntity.status(HttpStatus.OK).body("successful withdraw");
+        return ResponseEntity.noContent().build();
     }
 }

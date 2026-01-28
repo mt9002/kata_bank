@@ -5,8 +5,7 @@ import com.kataBank.exception.*;
 import com.kataBank.repository.account.AccountRepository;
 import org.springframework.stereotype.Service;
 
-import static com.kataBank.rules.AccountRules.MAX_INITIAL_AMOUNT;
-import static com.kataBank.rules.AccountRules.MIN_INITIAL_AMOUNT;
+import static com.kataBank.rules.AccountRules.*;
 
 @Service
 public class AccountService {
@@ -22,7 +21,7 @@ public class AccountService {
         validateAccountRequest(accountReq);
         validateExistingAccount(accountRepository.findByUserIdentity(accountReq.getUserIdentity()));
 
-        Account account = new Account.Builder()
+        Account account = Account.builder()
                 .amount(accountReq.getAmount())
                 .userIdentity(accountReq.getUserIdentity())
                 .build();
@@ -52,7 +51,7 @@ public class AccountService {
 
     private void illegalArgument(String argument, String message) {
         if (argument == null || argument.isBlank()) {
-            throw new IllegalArgumentException(message + "is required");
+            throw new IllegalArgumentAccountException(message + "is required");
         }
     }
 

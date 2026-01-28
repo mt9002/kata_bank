@@ -45,7 +45,10 @@
 			<version>3.2.6</version>
 			<scope>compile</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
 		<!-- Source: https://mvnrepository.com/artifact/com.github.librepdf/openpdf -->
 		<dependency>
 			<groupId>com.github.librepdf</groupId>
