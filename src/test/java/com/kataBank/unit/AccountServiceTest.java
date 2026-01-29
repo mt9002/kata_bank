@@ -1,8 +1,10 @@
-package com.kataBank;
+package com.kataBank.unit;
 
 import com.kataBank.dto.AccountRequest;
 import com.kataBank.exception.AccountAlreadyExistsException;
 import com.kataBank.exception.IllegalArgumentAccountException;
+import com.kataBank.exception.InvalidInitialAmountException;
+import com.kataBank.fixture.AccountFixture;
 import com.kataBank.repository.account.AccountRepository;
 import com.kataBank.service.Account;
 import com.kataBank.service.AccountService;
@@ -66,8 +68,14 @@ public class AccountServiceTest {
     }
 
     @Test
-    void createWhenRequestIsInvalidTest(){
+    void createWhenRequestIsInvalidBlankTest(){
         AccountRequest request = AccountFixture.accountRequestInvalid();
+        assertThrows(IllegalArgumentAccountException.class, () -> accountService.createAccount(request));
+    }
+
+    @Test
+    void createWhenRequestIsInvalidNullTest(){
+        AccountRequest request = AccountFixture.accountRequestInvalidNull();
         assertThrows(IllegalArgumentAccountException.class, () -> accountService.createAccount(request));
     }
 
@@ -84,4 +92,21 @@ public class AccountServiceTest {
         when(accountRepository.findByNumAccount(any())).thenReturn(null);
         assertThrows(AccountAlreadyExistsException.class, () -> accountService.findByAccount(numAccount));
     }
+
+    @Test
+    void createWhenMinInitialAmount(){
+        // Arrange
+        AccountRequest request = AccountFixture.accountMinInitialValue();
+        // Act and assert
+        assertThrows(InvalidInitialAmountException.class, () -> accountService.createAccount(request));
+    }
+
+    @Test
+    void createWhenMaxInitialAmount(){
+// Arrange
+        AccountRequest request = AccountFixture.accountMaxInitialValue();
+        // Act and assert
+        assertThrows(InvalidInitialAmountException.class, () -> accountService.createAccount(request));
+    }
+
 }

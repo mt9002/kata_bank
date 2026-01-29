@@ -1,27 +1,23 @@
-package com.kataBank;
+package com.kataBank.integration;
 
+import com.kataBank.fixture.AccountFixture;
 import com.kataBank.dto.AccountRequest;
+import com.kataBank.integration.config.IntegrationTestBase;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.TestConstructor;
 import org.springframework.test.web.servlet.MockMvc;
 import tools.jackson.databind.ObjectMapper;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-@AutoConfigureMockMvc
 public class AccountIntegrationTest extends IntegrationTestBase {
 
-    private final MockMvc mockMvc;
-    private final ObjectMapper objectMapper;
-
-    public AccountIntegrationTest(MockMvc mockMvc, ObjectMapper objectMapper) {
-        this.mockMvc = mockMvc;
-        this.objectMapper = objectMapper;
-    }
+    @Autowired
+    private MockMvc mockMvc;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Test
     void createAccountAndFindByAccountIntegrationTest() throws Exception {

@@ -1,6 +1,8 @@
-package com.kataBank;
+package com.kataBank.unit;
 
 import com.kataBank.dto.TransactionRequest;
+import com.kataBank.fixture.AccountFixture;
+import com.kataBank.fixture.TransactionalFixture;
 import com.kataBank.repository.account.AccountRepository;
 import com.kataBank.repository.extract.ExtractRepository;
 import com.kataBank.service.Account;

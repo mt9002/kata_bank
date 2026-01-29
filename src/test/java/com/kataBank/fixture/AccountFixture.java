@@ -1,4 +1,4 @@
-package com.kataBank;
+package com.kataBank.fixture;
 
 import com.kataBank.dto.AccountRequest;
 import com.kataBank.service.Account;
@@ -15,6 +15,25 @@ public class AccountFixture {
                 .amount(50000)
                 .build();
     }
+
+    public static AccountRequest accountMinInitialValue(){
+        return AccountRequest.builder()
+                .branch("bancolombia")
+                .typeAccount("ahorros")
+                .userIdentity("1075")
+                .amount(500)
+                .build();
+    }
+
+    public static AccountRequest accountMaxInitialValue(){
+        return AccountRequest.builder()
+                .branch("bancolombia")
+                .typeAccount("ahorros")
+                .userIdentity("1075")
+                .amount(500000000)
+                .build();
+    }
+
 
     public static AccountRequest accountIntegrationReq(){
         return new AccountRequest(
@@ -77,6 +96,11 @@ public class AccountFixture {
                 .branch(" ")
                 .typeAccount(" ")
                 .amount(50000)
+                .build();
+    }
+
+    public static AccountRequest accountRequestInvalidNull(){
+        return AccountRequest.builder()
                 .build();
     }
 
