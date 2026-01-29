@@ -16,6 +16,15 @@ public class AccountFixture {
                 .build();
     }
 
+    public static AccountRequest accountIntegrationReq(){
+        return new AccountRequest(
+                50000,
+                "bancolombia",
+                "ahorros",
+                "1075"
+                );
+    }
+
     public static Account accountSavedWithoutNumber() {
         return Account.builder()
                 .id(1L)
@@ -38,6 +47,15 @@ public class AccountFixture {
     public static Account account() {
         return Account.builder()
                 .id(1L)
+                .amount(50000)
+                .numAccount("BANCOLOMBIAAHORROS000000082")
+                .userIdentity("1075")
+                .registerDate(LocalDateTime.of(2026, 1, 27, 3, 0))
+                .build();
+    }
+
+    public static Account accountWithoutId() {
+        return Account.builder()
                 .amount(50000)
                 .numAccount("BANCOLOMBIAAHORROS000000082")
                 .userIdentity("1075")

@@ -10,4 +10,13 @@ public class AccountRequest {
     private String branch;
     private String typeAccount;
     private String userIdentity;
+
+    public AccountRequest() {}
+
+    public AccountRequest(double amount, String branch, String typeAccount, String userIdentity) {
+        this.amount = amount;
+        this.branch = branch;
+        this.typeAccount = typeAccount;
+        this.userIdentity = userIdentity;
+    }
 }
