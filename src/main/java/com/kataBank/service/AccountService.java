@@ -38,7 +38,9 @@ public class AccountService {
     }
 
     public Account findByAccount(String numAccount) {
-        return accountRepository.findByNumAccount(numAccount);
+        Account account = accountRepository.findByNumAccount(numAccount);
+        validateNotExistingAccount(account);
+        return account;
     }
 
     private void validateAccountRequest(AccountRequest accountRequest) {
@@ -67,6 +69,12 @@ public class AccountService {
 
     private void validateExistingAccount(Account account) {
         if (account != null) {
+            throw new AccountAlreadyExistsException("Account existing");
+        }
+    }
+
+    private void validateNotExistingAccount(Account account) {
+        if (account == null) {
             throw new AccountAlreadyExistsException("Account existing");
         }
     }

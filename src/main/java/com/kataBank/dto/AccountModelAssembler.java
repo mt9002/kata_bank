@@ -1,6 +1,7 @@
 package com.kataBank.dto;
 
 import com.kataBank.controller.AccountController;
+import com.kataBank.controller.PrintStatementController;
 import com.kataBank.controller.TransactionController;
 import com.kataBank.service.Account;
 import org.springframework.hateoas.EntityModel;
@@ -18,6 +19,11 @@ public class AccountModelAssembler implements RepresentationModelAssembler<Accou
                 // self
                 linkTo(methodOn(AccountController.class)
                         .findByAccount("bbva"))
+                        .withSelfRel(),
+
+                // self
+                linkTo(methodOn(PrintStatementController.class)
+                        .findStatement("bbva"))
                         .withSelfRel(),
 
                 // create account

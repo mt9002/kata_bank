@@ -1,7 +1,9 @@
 package com.kataBank.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
+@Builder
 @Data
 public class AccountRequest {
     private double amount;
