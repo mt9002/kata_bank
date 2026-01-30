@@ -16,6 +16,18 @@ public class TransactionalFixture {
         return new TransactionRequest("BANCOLOMBIAAHORROS000000082", 30000);
     }
 
+    public static TransactionRequest transactionReqNotNumAccount(){
+        return new TransactionRequest(" ", 50000);
+    }
+
+    public static TransactionRequest transactionReqNullNumAccount(){
+        return new TransactionRequest(null, 100000);
+    }
+
+    public static TransactionRequest transactionReqMinAmount(){
+        return new TransactionRequest("BANCOLOMBIAAHORROS000000082", 100);
+    }
+
     public static List<Extract> extractList(){
 
         return Arrays.asList(

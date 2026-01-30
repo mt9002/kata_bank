@@ -1,6 +1,10 @@
 package com.kataBank.unit;
 
 import com.kataBank.dto.TransactionRequest;
+import com.kataBank.exception.AccountAlreadyExistsException;
+import com.kataBank.exception.AccountNotFoundException;
+import com.kataBank.exception.InvalidNumAccountException;
+import com.kataBank.exception.InvalidTransactionAmountException;
 import com.kataBank.fixture.AccountFixture;
 import com.kataBank.fixture.TransactionalFixture;
 import com.kataBank.repository.account.AccountRepository;
@@ -14,6 +18,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -63,5 +68,30 @@ public class TransactionServiceTest {
         verify(accountRepository, times(1)).save(any(Account.class));
         verify(accountRepository).findByNumAccount(transactionReq.numAccount());
         verify(extractRepository, times(1)).save(any(Extract.class));
+    }
+
+    @Test
+    void transactionWhenNotExistingAccountTest(){
+        TransactionRequest transactionReq = TransactionalFixture.transactionReq();
+        when(accountRepository.findByNumAccount(transactionReq.numAccount())).thenReturn(null);
+        assertThrows(AccountNotFoundException.class, () -> transactionService.deposit(transactionReq));
+    }
+
+    @Test
+    void transactionWhenBlankNumAccountTest(){
+        TransactionRequest transactionReq = TransactionalFixture.transactionReqNotNumAccount();
+        assertThrows(InvalidNumAccountException.class, () -> transactionService.deposit(transactionReq));
+    }
+
+    @Test
+    void transactionWhenNullNumAccountTest(){
+        TransactionRequest transactionReq = TransactionalFixture.transactionReqNullNumAccount();
+        assertThrows(InvalidNumAccountException.class, () -> transactionService.deposit(transactionReq));
+    }
+
+    @Test
+    void transactionWhenMinAmountTest(){
+        TransactionRequest transactionReq = TransactionalFixture.transactionReqMinAmount();
+        assertThrows(InvalidTransactionAmountException.class, () -> transactionService.deposit(transactionReq));
     }
 }
