@@ -58,7 +58,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     private void validateTransactionRequest(TransactionRequest transactionRequest) {
         if (transactionRequest.amount() <= MIN_TRANSACTION_AMOUNT) {
-            throw new InvalidTransactionAmountException("amount less than n" + MIN_TRANSACTION_AMOUNT);
+            throw new InvalidTransactionAmountException("amount less than " + MIN_TRANSACTION_AMOUNT);
         }
         if (transactionRequest.numAccount() == null || transactionRequest.numAccount().isBlank()) {
             throw new InvalidNumAccountException("empty account number.");

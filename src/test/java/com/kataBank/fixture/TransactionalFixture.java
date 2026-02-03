@@ -1,14 +1,11 @@
 package com.kataBank.fixture;
 
 import com.kataBank.dto.TransactionRequest;
-import com.kataBank.service.Account;
 import com.kataBank.service.Extract;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
-
-import static com.kataBank.fixture.AccountFixture.account;
 
 public class TransactionalFixture {
 

@@ -29,8 +29,8 @@ public class AccountService {
         account = accountRepository.save(account);
 
         String numAccount = generateAccountNumber(
-                accountReq.getBranch(),
-                accountReq.getTypeAccount(), account.getId());
+                accountReq.getBranch().toUpperCase(),
+                accountReq.getTypeAccount().toUpperCase(), account.getId());
 
         account.assignNumAccount(numAccount);
 

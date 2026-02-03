@@ -13,3 +13,6 @@ mvn surefire-report:report
 mvn clean test site
 mvn jacoco:report
 
+
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
+

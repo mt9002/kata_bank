@@ -11,7 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import tools.jackson.databind.ObjectMapper;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class TransactionIntegrationTest extends IntegrationTestBase {
@@ -50,4 +52,35 @@ public class TransactionIntegrationTest extends IntegrationTestBase {
                         .content(objectMapper.writeValueAsString(transactionReq)))
                 .andExpect(status().isNoContent());
     }
+
+    @Test
+    void shouldReturnProblemDetailWhenBusinessException() throws Exception {
+
+        mockMvc.perform(post("/transaction/withDraw")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                {
+                  "numAccount": "BANCOLOMBIAAHORROS000000082",
+                  "amount": 100
+                }
+            """))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_PROBLEM_JSON))
+                .andExpect(jsonPath("$.title").value("business mistake "))
+                .andExpect(jsonPath("$.detail").value("amount less than 1000.0"));
+    }
+
+    @Test
+    void shouldReturnProblemDetailWhenException() throws Exception {
+
+        mockMvc.perform(post("/transaction/withDraw")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{}"))
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().contentType(MediaType.APPLICATION_PROBLEM_JSON))
+                .andExpect(jsonPath("$.title").value("unexpected error "))
+                .andExpect(jsonPath("$.detail")
+                        .value("An unexpected error occurred. Please contact support."));
+    }
+
 }

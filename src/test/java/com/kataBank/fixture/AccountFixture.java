@@ -112,4 +112,12 @@ public class AccountFixture {
                 .amount(30000)
                 .build();
     }
+
+    public static Account accountCreate(){
+        return Account.builder()
+                .numAccount("BANCOLOMBIAAHORROS000000082")
+                .userIdentity("1075")
+                .amount(90000)
+                .build();
+    }
 }

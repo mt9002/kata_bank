@@ -21,7 +21,7 @@ public class GlobalHandlerException {
     public ProblemDetail handlerException(Exception ex){
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
         problemDetail.setTitle("unexpected error ");
-        problemDetail.setDetail(ex.getMessage());
+        problemDetail.setDetail("An unexpected error occurred. Please contact support.");
         return problemDetail;
     }
 }
