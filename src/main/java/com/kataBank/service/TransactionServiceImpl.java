@@ -4,8 +4,10 @@ import com.kataBank.dto.TransactionRequest;
 import com.kataBank.exception.AccountNotFoundException;
 import com.kataBank.exception.InvalidNumAccountException;
 import com.kataBank.exception.InvalidTransactionAmountException;
-import com.kataBank.repository.account.AccountRepository;
-import com.kataBank.repository.extract.ExtractRepository;
+import com.kataBank.model.Account;
+import com.kataBank.model.Extract;
+import com.kataBank.repository.AccountRepository;
+import com.kataBank.repository.ExtractRepository;
 import org.springframework.stereotype.Service;
 
 import static com.kataBank.rules.TransactionRules.MIN_TRANSACTION_AMOUNT;

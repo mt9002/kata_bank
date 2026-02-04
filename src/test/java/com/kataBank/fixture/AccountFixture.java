@@ -1,7 +1,7 @@
 package com.kataBank.fixture;
 
 import com.kataBank.dto.AccountRequest;
-import com.kataBank.service.Account;
+import com.kataBank.model.Account;
 
 import java.time.LocalDateTime;
 

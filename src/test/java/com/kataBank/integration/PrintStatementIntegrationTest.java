@@ -2,9 +2,9 @@ package com.kataBank.integration;
 
 import com.kataBank.fixture.AccountFixture;
 import com.kataBank.integration.config.IntegrationTestBase;
-import com.kataBank.repository.account.AccountRepository;
-import com.kataBank.repository.extract.ExtractRepository;
-import com.kataBank.service.Account;
+import com.kataBank.repository.AccountRepository;
+import com.kataBank.repository.ExtractRepository;
+import com.kataBank.model.Account;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

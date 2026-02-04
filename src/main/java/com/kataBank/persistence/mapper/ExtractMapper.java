@@ -1,8 +1,8 @@
-package com.kataBank.repository.mapper;
+package com.kataBank.persistence.mapper;
 
-import com.kataBank.model.AccountModel;
-import com.kataBank.model.ExtractModel;
-import com.kataBank.service.Extract;
+import com.kataBank.persistence.entity.AccountEntity;
+import com.kataBank.persistence.entity.ExtractEntity;
+import com.kataBank.model.Extract;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,11 +10,11 @@ import java.util.List;
 @Component
 public class ExtractMapper {
 
-    public List<Extract> toListExtract(List<ExtractModel> extractModelList){
+    public List<Extract> toListExtract(List<ExtractEntity> extractModelList){
         return extractModelList.stream().map(this::toExtract).toList();
     }
 
-    private Extract toExtract(ExtractModel model) {
+    private Extract toExtract(ExtractEntity model) {
         Extract extract = new Extract();
         extract.setAmount(model.getAmount());
         extract.setBalance(model.getBalance());
@@ -22,10 +22,10 @@ public class ExtractMapper {
         return extract;
     }
 
-    public ExtractModel toExtractModel(Extract extract) {
+    public ExtractEntity toExtractModel(Extract extract) {
 
-        ExtractModel extractModel = new ExtractModel();
-        AccountModel accountModel = new AccountModel();
+        ExtractEntity extractModel = new ExtractEntity();
+        AccountEntity accountModel = new AccountEntity();
 
         accountModel.setId(extract.getAccount().getId());
 

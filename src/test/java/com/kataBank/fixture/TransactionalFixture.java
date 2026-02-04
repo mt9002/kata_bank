@@ -1,7 +1,7 @@
 package com.kataBank.fixture;
 
 import com.kataBank.dto.TransactionRequest;
-import com.kataBank.service.Extract;
+import com.kataBank.model.Extract;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;

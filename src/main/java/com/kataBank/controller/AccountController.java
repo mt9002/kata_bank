@@ -2,7 +2,7 @@ package com.kataBank.controller;
 
 import com.kataBank.dto.AccountModelAssembler;
 import com.kataBank.dto.AccountRequest;
-import com.kataBank.service.Account;
+import com.kataBank.model.Account;
 import com.kataBank.service.AccountService;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;

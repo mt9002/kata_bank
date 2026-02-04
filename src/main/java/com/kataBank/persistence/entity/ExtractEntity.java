@@ -1,4 +1,4 @@
-package com.kataBank.model;
+package com.kataBank.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "extract")
-public class ExtractModel {
+public class ExtractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class ExtractModel {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
-    private AccountModel account;
+    private AccountEntity account;
 
     @Column(name = "register_date", nullable = false, updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")

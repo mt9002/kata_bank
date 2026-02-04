@@ -1,13 +1,14 @@
-package com.kataBank.repository.extract;
+package com.kataBank.persistence.repository.extract;
 
-import com.kataBank.repository.mapper.ExtractMapper;
-import com.kataBank.service.Extract;
+import com.kataBank.persistence.mapper.ExtractMapper;
+import com.kataBank.model.Extract;
+import com.kataBank.repository.ExtractRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class ExtractRepositoryImpl implements ExtractRepository{
+public class ExtractRepositoryImpl implements ExtractRepository {
 
     private final ExtractJpa extractJpa;
     private final ExtractMapper extractMapper;

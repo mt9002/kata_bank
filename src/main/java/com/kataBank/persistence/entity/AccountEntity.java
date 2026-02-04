@@ -1,20 +1,17 @@
-package com.kataBank.model;
+package com.kataBank.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Entity
 @Getter
 @Setter
 @Table(name = "account")
-public class AccountModel {
+public class AccountEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

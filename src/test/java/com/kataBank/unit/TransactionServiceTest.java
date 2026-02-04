@@ -1,16 +1,15 @@
 package com.kataBank.unit;
 
 import com.kataBank.dto.TransactionRequest;
-import com.kataBank.exception.AccountAlreadyExistsException;
 import com.kataBank.exception.AccountNotFoundException;
 import com.kataBank.exception.InvalidNumAccountException;
 import com.kataBank.exception.InvalidTransactionAmountException;
 import com.kataBank.fixture.AccountFixture;
 import com.kataBank.fixture.TransactionalFixture;
-import com.kataBank.repository.account.AccountRepository;
-import com.kataBank.repository.extract.ExtractRepository;
-import com.kataBank.service.Account;
-import com.kataBank.service.Extract;
+import com.kataBank.repository.AccountRepository;
+import com.kataBank.repository.ExtractRepository;
+import com.kataBank.model.Account;
+import com.kataBank.model.Extract;
 import com.kataBank.service.TransactionServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

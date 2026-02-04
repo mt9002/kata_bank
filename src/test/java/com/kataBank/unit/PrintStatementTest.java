@@ -2,9 +2,9 @@ package com.kataBank.unit;
 
 import com.kataBank.fixture.AccountFixture;
 import com.kataBank.fixture.TransactionalFixture;
-import com.kataBank.repository.account.AccountRepository;
-import com.kataBank.repository.extract.ExtractRepository;
-import com.kataBank.service.Account;
+import com.kataBank.repository.AccountRepository;
+import com.kataBank.repository.ExtractRepository;
+import com.kataBank.model.Account;
 import com.kataBank.service.PrintStatementService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,8 +1,9 @@
-package com.kataBank.repository.account;
+package com.kataBank.persistence.repository.account;
 
-import com.kataBank.model.AccountModel;
-import com.kataBank.repository.mapper.AccountMapper;
-import com.kataBank.service.Account;
+import com.kataBank.persistence.entity.AccountEntity;
+import com.kataBank.persistence.mapper.AccountMapper;
+import com.kataBank.model.Account;
+import com.kataBank.repository.AccountRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -28,7 +29,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Account save(Account account) {
-        AccountModel accountModel = accountMapper.toAccountModel(account);
+        AccountEntity accountModel = accountMapper.toAccountModel(account);
         return accountMapper.toAccount(accountJpa.save(accountModel));
     }
 }

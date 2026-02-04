@@ -1,7 +1,7 @@
-package com.kataBank.repository.mapper;
+package com.kataBank.persistence.mapper;
 
-import com.kataBank.model.AccountModel;
-import com.kataBank.service.Account;
+import com.kataBank.persistence.entity.AccountEntity;
+import com.kataBank.model.Account;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -14,11 +14,11 @@ public class AccountMapper {
         this.modelMapper = modelMapper;
     }
 
-    public AccountModel toAccountModel(Account account) {
-        return modelMapper.map(account, AccountModel.class);
+    public AccountEntity toAccountModel(Account account) {
+        return modelMapper.map(account, AccountEntity.class);
     }
 
-    public Account toAccount(AccountModel accountModel) {
+    public Account toAccount(AccountEntity accountModel) {
         return Account.builder()
                 .id(accountModel.getId())
                 .amount(accountModel.getAmount())
@@ -28,7 +28,7 @@ public class AccountMapper {
                 .build();
     }
 
-    public Account toAccountExisting(AccountModel accountModel) {
+    public Account toAccountExisting(AccountEntity accountModel) {
         if (accountModel == null) {
             return null;
         }

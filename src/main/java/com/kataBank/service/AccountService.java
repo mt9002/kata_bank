@@ -2,7 +2,8 @@ package com.kataBank.service;
 
 import com.kataBank.dto.AccountRequest;
 import com.kataBank.exception.*;
-import com.kataBank.repository.account.AccountRepository;
+import com.kataBank.model.Account;
+import com.kataBank.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
 import static com.kataBank.rules.AccountRules.*;

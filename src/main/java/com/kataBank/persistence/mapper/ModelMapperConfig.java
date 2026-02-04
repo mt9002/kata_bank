@@ -1,4 +1,4 @@
-package com.kataBank.repository.mapper;
+package com.kataBank.persistence.mapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

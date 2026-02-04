@@ -1,7 +1,9 @@
 package com.kataBank.service;
 
-import com.kataBank.repository.account.AccountRepository;
-import com.kataBank.repository.extract.ExtractRepository;
+import com.kataBank.model.Account;
+import com.kataBank.model.Extract;
+import com.kataBank.repository.AccountRepository;
+import com.kataBank.repository.ExtractRepository;
 import org.openpdf.text.Chunk;
 import org.openpdf.text.Paragraph;
 import org.openpdf.text.pdf.*;

@@ -1,4 +1,4 @@
-package com.kataBank.service;
+package com.kataBank.model;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
-package com.kataBank.repository.extract;
+package com.kataBank.repository;
 
-import com.kataBank.service.Extract;
+import com.kataBank.model.Extract;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@ package com.kataBank.dto;
 import com.kataBank.controller.AccountController;
 import com.kataBank.controller.PrintStatementController;
 import com.kataBank.controller.TransactionController;
-import com.kataBank.service.Account;
+import com.kataBank.model.Account;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
