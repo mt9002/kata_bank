@@ -76,7 +76,7 @@ public class AccountService {
 
     private void validateNotExistingAccount(Account account) {
         if (account == null) {
-            throw new AccountAlreadyExistsException("Account existing");
+            throw new AccountNotAlreadyExistsException("Account not existing");
         }
     }
 

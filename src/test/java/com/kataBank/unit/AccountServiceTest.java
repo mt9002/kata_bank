@@ -2,6 +2,7 @@ package com.kataBank.unit;
 
 import com.kataBank.dto.AccountRequest;
 import com.kataBank.exception.AccountAlreadyExistsException;
+import com.kataBank.exception.AccountNotAlreadyExistsException;
 import com.kataBank.exception.IllegalArgumentAccountException;
 import com.kataBank.exception.InvalidInitialAmountException;
 import com.kataBank.fixture.AccountFixture;
@@ -90,7 +91,7 @@ public class AccountServiceTest {
     void createWhenNotExistingAccountTest(){
         String numAccount = "0000089";
         when(accountRepository.findByNumAccount(any())).thenReturn(null);
-        assertThrows(AccountAlreadyExistsException.class, () -> accountService.findByAccount(numAccount));
+        assertThrows(AccountNotAlreadyExistsException.class, () -> accountService.findByAccount(numAccount));
     }
 
     @Test
