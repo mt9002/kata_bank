@@ -44,6 +44,19 @@ Generate Report (first, mvn test):
 
 ## Connect with me:
 <p align="left">
-  <a href="https://www.linkedin.com/in/mauriciotovargil/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="adam pithewan" height="30" width="40" /></a>
-  <a href="https://www.instagram.com/mtovar90?igsh=bmxtdGM3cG12aXhq" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg"
-      alt="maot" height="30" width="40" /></a></p>
+  <a href="https://www.linkedin.com/in/mtovargil/" target="_blank">
+    <img align="center"
+         src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg"
+         alt="Mauricio Tovar LinkedIn"
+         height="30"
+         width="40" />
+  </a>
+
+  <a href="https://www.instagram.com/mtovar90?igsh=bmxtdGM3cG12aXhq" target="_blank">
+    <img align="center"
+         src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg"
+         alt="Mauricio Tovar Instagram"
+         height="30"
+         width="40" />
+  </a>
+</p>
