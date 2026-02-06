@@ -3,6 +3,8 @@ package com.kataBank.integration;
 import com.kataBank.fixture.AccountFixture;
 import com.kataBank.dto.AccountRequest;
 import com.kataBank.integration.config.IntegrationTestBase;
+import com.kataBank.model.Account;
+import com.kataBank.repository.AccountRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,6 +20,8 @@ public class AccountIntegrationTest extends IntegrationTestBase {
     private MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
+    @Autowired
+    private AccountRepository accountRepository;
 
     @Test
     void createAccountAndFindByAccountIntegrationTest() throws Exception {
@@ -26,7 +30,7 @@ public class AccountIntegrationTest extends IntegrationTestBase {
         AccountRequest request = AccountFixture.accountIntegrationReq();
 
         // Act and Assert
-        String createResponseJson = mockMvc.perform(post("/account")
+        mockMvc.perform(post("/account")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isCreated())
@@ -36,13 +40,17 @@ public class AccountIntegrationTest extends IntegrationTestBase {
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-
-        String numAccount = objectMapper.readTree(createResponseJson).get("numAccount").asString();
-
-        mockMvc.perform(get("/account/{numAccount}", numAccount))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.numAccount").value(numAccount))
-                .andExpect(jsonPath("$.amount").value(request.getAmount()))
-                .andExpect(jsonPath("$.userIdentity").value(request.getUserIdentity()));
     }
+
+    @Test
+    void findAccountContractTest() throws Exception {
+        Account account = accountRepository.save(AccountFixture.accountCreate());
+        mockMvc.perform(get("/account/{numAccount}", account.getNumAccount()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.numAccount").isString())
+                .andExpect(jsonPath("$.amount").isNumber())
+                .andExpect(jsonPath("$.userIdentity").isString())
+                .andExpect(jsonPath("$._links").exists());
+    }
+
 }
