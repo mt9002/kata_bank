@@ -1,8 +1,6 @@
 ##   Welcome
 
 ### Kata Bank API
-
-- Repository: [kata_bank](https://github.com/mt9002/kata_bank)
   
 ### Content
 - Layered Architecture (DDD-lite, Clean Architecture, SOLID)
