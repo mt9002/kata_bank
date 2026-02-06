@@ -14,11 +14,6 @@
 - Kata reference:  
   https://www.codurance.com/es/katas/bank-kata
 
-### Contact
-- Email: <a href="mailto:mauricio.tovar.gil@gmail.com">mauricio.tovar.gil@gmail.com</a>  
-- LinkedIn: <a href="https://www.linkedin.com/in/mtovargil/">linkedin.com/in/mtovargil</a>
-
-
 ### TESTING
 Tools: JUnit 5 -- Mockito --- AssertJ
 
