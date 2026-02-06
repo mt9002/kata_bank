@@ -25,7 +25,16 @@ public class TransactionServiceImpl implements TransactionService {
         this.extractRepository = extractRepository;
     }
 
-    public void deposit(TransactionRequest transactionReq) {
+    @Override
+    public void transaction(TransactionRequest transactionReq) {
+        switch (transactionReq.type()) {
+            case DEPOSIT -> deposit(transactionReq);
+            case WITHDRAW -> withDraw(transactionReq);
+            default -> throw new IllegalArgumentException("Invalid transaction type");
+        }
+    }
+
+    private void deposit(TransactionRequest transactionReq) {
         validateTransactionRequest(transactionReq);
 
         Account account = accountRepository.findByNumAccount(transactionReq.numAccount());
@@ -42,7 +51,7 @@ public class TransactionServiceImpl implements TransactionService {
                 ));
     }
 
-    public void withDraw(TransactionRequest transactionReq) {
+    private void withDraw(TransactionRequest transactionReq) {
         validateTransactionRequest(transactionReq);
 
         Account account = accountRepository.findByNumAccount(transactionReq.numAccount());

@@ -21,15 +21,15 @@ public class AccountController {
         this.assembler = assembler;
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<EntityModel<Account>> createAccount(@RequestBody AccountRequest accountReq){
         Account account = accountService.createAccount(accountReq);
-        return ResponseEntity.status(HttpStatus.OK).body(assembler.toModel(account));
+        return ResponseEntity.status(HttpStatus.CREATED).body(assembler.toModel(account));
     }
 
-    @GetMapping("/findByAccount")
+    @GetMapping("/{numAccount}")
     public ResponseEntity<EntityModel<Account>> findByAccount(
-            @RequestParam(value = "numAccount") String numAccount){
+            @PathVariable String numAccount){
         Account account = accountService.findByAccount(numAccount);
         return ResponseEntity.status(HttpStatus.OK).body(assembler.toModel(account));
     }

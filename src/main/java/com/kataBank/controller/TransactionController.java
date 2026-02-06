@@ -19,15 +19,9 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @PostMapping("/deposit")
-    public ResponseEntity<Void> deposit(@RequestBody TransactionRequest transactionRequest){
-        transactionService.deposit(transactionRequest);
-        return ResponseEntity.noContent().build();
-    }
-
-    @PostMapping("/withDraw")
-    public ResponseEntity<Void> withDraw(@RequestBody TransactionRequest transactionRequest){
-        transactionService.withDraw(transactionRequest);
-        return ResponseEntity.noContent().build();
+    @PostMapping
+    public ResponseEntity<Void> transaction(@RequestBody TransactionRequest transactionRequest){
+        transactionService.transaction(transactionRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

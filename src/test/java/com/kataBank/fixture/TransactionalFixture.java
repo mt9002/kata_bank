@@ -2,6 +2,7 @@ package com.kataBank.fixture;
 
 import com.kataBank.dto.TransactionRequest;
 import com.kataBank.model.Extract;
+import com.kataBank.rules.TransactionType;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -10,19 +11,19 @@ import java.util.List;
 public class TransactionalFixture {
 
     public static TransactionRequest transactionReq(){
-        return new TransactionRequest("BANCOLOMBIAAHORROS000000082", 30000);
+        return new TransactionRequest("BANCOLOMBIAAHORROS000000082", 30000, TransactionType.WITHDRAW);
     }
 
     public static TransactionRequest transactionReqNotNumAccount(){
-        return new TransactionRequest(" ", 50000);
+        return new TransactionRequest(" ", 50000, TransactionType.WITHDRAW);
     }
 
     public static TransactionRequest transactionReqNullNumAccount(){
-        return new TransactionRequest(null, 100000);
+        return new TransactionRequest(null, 100000, TransactionType.DEPOSIT);
     }
 
     public static TransactionRequest transactionReqMinAmount(){
-        return new TransactionRequest("BANCOLOMBIAAHORROS000000082", 100);
+        return new TransactionRequest("BANCOLOMBIAAHORROS000000082", 100, TransactionType.DEPOSIT);
     }
 
     public static List<Extract> extractList(){

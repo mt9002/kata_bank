@@ -1,4 +1,6 @@
 package com.kataBank.dto;
 
 
-public record TransactionRequest(String numAccount, double amount) {}
+import com.kataBank.rules.TransactionType;
+
+public record TransactionRequest(String numAccount, double amount, TransactionType type) {}

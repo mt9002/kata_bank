@@ -43,7 +43,7 @@ public class TransactionServiceTest {
         doNothing().when(extractRepository).save(any(Extract.class));
 
         // Act
-        transactionService.deposit(transactionReq);
+        transactionService.transaction(transactionReq);
 
         // Assert
         verify(accountRepository, times(1)).save(any(Account.class));
@@ -61,7 +61,7 @@ public class TransactionServiceTest {
         doNothing().when(extractRepository).save(any(Extract.class));
 
         // Act
-        transactionService.deposit(transactionReq);
+        transactionService.transaction(transactionReq);
 
         // Assert
         verify(accountRepository, times(1)).save(any(Account.class));
@@ -73,24 +73,24 @@ public class TransactionServiceTest {
     void transactionWhenNotExistingAccountTest(){
         TransactionRequest transactionReq = TransactionalFixture.transactionReq();
         when(accountRepository.findByNumAccount(transactionReq.numAccount())).thenReturn(null);
-        assertThrows(AccountNotFoundException.class, () -> transactionService.deposit(transactionReq));
+        assertThrows(AccountNotFoundException.class, () -> transactionService.transaction(transactionReq));
     }
 
     @Test
     void transactionWhenBlankNumAccountTest(){
         TransactionRequest transactionReq = TransactionalFixture.transactionReqNotNumAccount();
-        assertThrows(InvalidNumAccountException.class, () -> transactionService.deposit(transactionReq));
+        assertThrows(InvalidNumAccountException.class, () -> transactionService.transaction(transactionReq));
     }
 
     @Test
     void transactionWhenNullNumAccountTest(){
         TransactionRequest transactionReq = TransactionalFixture.transactionReqNullNumAccount();
-        assertThrows(InvalidNumAccountException.class, () -> transactionService.deposit(transactionReq));
+        assertThrows(InvalidNumAccountException.class, () -> transactionService.transaction(transactionReq));
     }
 
     @Test
     void transactionWhenMinAmountTest(){
         TransactionRequest transactionReq = TransactionalFixture.transactionReqMinAmount();
-        assertThrows(InvalidTransactionAmountException.class, () -> transactionService.deposit(transactionReq));
+        assertThrows(InvalidTransactionAmountException.class, () -> transactionService.transaction(transactionReq));
     }
 }

@@ -2,9 +2,11 @@ package com.kataBank.integration;
 
 import com.kataBank.fixture.AccountFixture;
 import com.kataBank.dto.TransactionRequest;
+import com.kataBank.fixture.TransactionalFixture;
 import com.kataBank.integration.config.IntegrationTestBase;
 import com.kataBank.repository.AccountRepository;
 import com.kataBank.model.Account;
+import com.kataBank.rules.TransactionType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -31,12 +33,12 @@ public class TransactionIntegrationTest extends IntegrationTestBase {
         account.assignNumAccount("BANCOLOMBIAAHORROS000000082");
         accountRepository.save(account);
 
-        TransactionRequest transactionReq = new TransactionRequest(account.getNumAccount(), 10000);
+        TransactionRequest transactionReq = new TransactionRequest(account.getNumAccount(), 10000, TransactionType.DEPOSIT);
 
-        mockMvc.perform(post("/transaction/deposit")
+        mockMvc.perform(post("/transaction")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(transactionReq)))
-                .andExpect(status().isNoContent());
+                .andExpect(status().isCreated());
     }
 
     @Test
@@ -45,23 +47,24 @@ public class TransactionIntegrationTest extends IntegrationTestBase {
         account.assignNumAccount("BANCOLOMBIAAHORROS000000082");
         accountRepository.save(account);
 
-        TransactionRequest transactionReq = new TransactionRequest(account.getNumAccount(), 5000);
+        TransactionRequest transactionReq = new TransactionRequest(account.getNumAccount(), 5000, TransactionType.WITHDRAW);
 
-        mockMvc.perform(post("/transaction/withDraw")
+        mockMvc.perform(post("/transaction")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(transactionReq)))
-                .andExpect(status().isNoContent());
+                .andExpect(status().isCreated());
     }
 
     @Test
     void shouldReturnProblemDetailWhenBusinessException() throws Exception {
-
-        mockMvc.perform(post("/transaction/withDraw")
+        TransactionalFixture.transactionReqMinAmount();
+        mockMvc.perform(post("/transaction")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                 {
                   "numAccount": "BANCOLOMBIAAHORROS000000082",
-                  "amount": 100
+                  "amount": 100,
+                  "type": "DEPOSIT"
                 }
             """))
                 .andExpect(status().isBadRequest())
@@ -73,7 +76,7 @@ public class TransactionIntegrationTest extends IntegrationTestBase {
     @Test
     void shouldReturnProblemDetailWhenException() throws Exception {
 
-        mockMvc.perform(post("/transaction/withDraw")
+        mockMvc.perform(post("/transaction")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{}"))
                 .andExpect(status().isInternalServerError())

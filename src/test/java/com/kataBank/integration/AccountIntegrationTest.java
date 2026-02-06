@@ -25,11 +25,11 @@ public class AccountIntegrationTest extends IntegrationTestBase {
         // Arrange
         AccountRequest request = AccountFixture.accountIntegrationReq();
 
-        // -------- CREATE ACCOUNT --------
-        String createResponseJson = mockMvc.perform(post("/account/create")
+        // Act and Assert
+        String createResponseJson = mockMvc.perform(post("/account")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.numAccount").isNotEmpty())
                 .andExpect(jsonPath("$.amount").value(50000))
                 .andExpect(jsonPath("$.userIdentity").value("1075"))
@@ -39,8 +39,7 @@ public class AccountIntegrationTest extends IntegrationTestBase {
 
         String numAccount = objectMapper.readTree(createResponseJson).get("numAccount").asString();
 
-        mockMvc.perform(get("/account/findByAccount")
-                        .param("numAccount", numAccount))
+        mockMvc.perform(get("/account/{numAccount}", numAccount))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.numAccount").value(numAccount))
                 .andExpect(jsonPath("$.amount").value(request.getAmount()))

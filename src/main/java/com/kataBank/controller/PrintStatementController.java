@@ -2,10 +2,7 @@ package com.kataBank.controller;
 
 import com.kataBank.service.PrintStatementService;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/printStatement")
@@ -17,8 +14,8 @@ public class PrintStatementController {
         this.printStatementService = printStatementService;
     }
 
-    @GetMapping("/findStatement")
-    public ResponseEntity<byte[]> findStatement(@RequestParam(value = "numAccount") String numAccount) {
+    @GetMapping("/{numAccount}")
+    public ResponseEntity<byte[]> findStatement(@PathVariable String numAccount) {
 
         byte[] pdf = printStatementService.printStatementExtract(numAccount);
 

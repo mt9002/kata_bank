@@ -30,11 +30,10 @@ public class PrintStatementIntegrationTest extends IntegrationTestBase {
 
         // Arrange
         Account account = AccountFixture.accountCreate();
-        account= accountRepository.save(account);
+        account = accountRepository.save(account);
         extractRepository.findByAccountIdOrderByRegisterDateDesc(account.getId());
         // Act and assert
-        mockMvc.perform(get("/printStatement/findStatement")
-                        .param("numAccount", account.getNumAccount()))
+        mockMvc.perform(get("/printStatement/{numAccount}", account.getNumAccount()))
                 .andExpect(content().contentType(MediaType.APPLICATION_PDF))
                 .andExpect(header().string(
                         HttpHeaders.CONTENT_DISPOSITION,
@@ -42,7 +41,5 @@ public class PrintStatementIntegrationTest extends IntegrationTestBase {
                 ))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_PDF));
-
     }
-
 }
