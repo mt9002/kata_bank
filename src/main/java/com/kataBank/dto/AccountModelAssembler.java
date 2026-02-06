@@ -14,33 +14,28 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 public class AccountModelAssembler implements RepresentationModelAssembler<Account, EntityModel<Account>> {
     @Override
     public EntityModel<Account> toModel(Account account) {
+        String numAccount = account.getNumAccount();
         return EntityModel.of(account,
-
                 // self
                 linkTo(methodOn(AccountController.class)
-                        .findByAccount("bbva"))
+                        .findByAccount(numAccount))
                         .withSelfRel(),
 
-                // self
+                // print statement
                 linkTo(methodOn(PrintStatementController.class)
-                        .findStatement("bbva"))
-                        .withSelfRel(),
+                        .findStatement(numAccount))
+                        .withRel("statement"),
 
                 // create account
-                linkTo(AccountController.class)
-                        .slash("create")
-                        .withRel("create"),
-
-                // deposit
-                linkTo(TransactionController.class)
-                        .slash("deposit")
-                        .withRel("deposit")
+                linkTo(methodOn(AccountController.class)
+                        .createAccount(null))
+                        .withRel("create-account")
                         .withType("POST"),
 
-                // withdraw
-                linkTo(TransactionController.class)
-                        .slash("withDraw")
-                        .withRel("withdraw")
+                // transaction (deposit / withdraw)
+                linkTo(methodOn(TransactionController.class)
+                        .transaction(null))
+                        .withRel("transaction")
                         .withType("POST")
         );
     }
